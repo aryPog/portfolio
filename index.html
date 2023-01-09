@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ary</title>
+    <link rel="shortcut icon" href="/imgs/ico.png" type="image/x-icon">
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body{padding: 0 10% 0 10%;}
+
+        .nome{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nome img{
+            width: 50%;
+        }
+        .bloco-trabalho{
+            width: 300px;
+            height: 200px;
+            margin: 5px;
+            /*adcionar JS*/
+            background-size:cover;
+            background-repeat: no-repeat;
+            border: solid 1px;
+            display: inline-block;
+        }
+        a{color:black}
+        .bloco-trabalho p{
+            padding: 0;
+            margin: 0;
+            text-align:1;
+            background-color: rgba(255, 255, 255, 0.822);
+        }
+        @media screen and (max-width: 800px){
+            body{
+                padding: 0 5% 0 5%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="social" id="social">
+        <a href="https://stackoverflow.com/users/20944367/arypog"><img src="/imgs/stack-overflow.png"></a>
+        <a href="https://www.linkedin.com/in/ary-costa-a31a42234/"><img src="/imgs/linkedin.png" ></a>
+        <a href="https://github.com/aryPog"><img src="/imgs/github.png" ></a>
+        <a href="https://www.instagram.com/ary.fofo/"><img src="/imgs/instagram.png"></a>
+    </div><br>
+
+        <div class="nome sobre">
+            <img src="/imgs/nome.png">
+            <p>Ary G. Costa;
+Estudante de TI comprometido em ajudar o próximo com 1 ano e 7 meses de experiência na área. Já trabalhei como jovem aprendiz em uma empresa de arquitetura fazendo planilhas no EXEL e Hoje em dia uso o conhecimento que adquiri como ajuda nos meu estudos. Atualmente estudo no Colégio Cotemig e tenho essas qualificações:
+
+C# - básico;
+HTML, CSS - básico;
+javaScript - quase bom;
+inglês - "fluente"</p>
+        </div>
+        <div class="trabalhos">
+            <h1>trabalhos</h1>
+            <div class="data"></div>
+        </div>
+    <script>
+        fetch("work.json")
+        .then(function(response){
+        return response.json();
+        })
+
+        .then(function(works){
+        let placeholder = document.querySelector(".data");
+        let out = "";
+        for(let work of works){
+            out += `
+                <div class="bloco-trabalho" style="background-image:url(${work.image});">
+                    <a href="${work.link}"><p>${work.name}</p></a>
+                </div>
+            `;
+        }
+        placeholder.innerHTML = out;
+        });
+    </script>
+</body>
+</html>
