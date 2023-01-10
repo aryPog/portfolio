@@ -39,13 +39,15 @@
             padding: 0;
             margin: 0;
             text-align:1;
-            background-color: rgba(255, 255, 255, 0.822);
+            background-color: rgba(255, 255, 255, 0.9);
         }
         @media screen and (max-width: 800px){
             body{
                 padding: 0 5% 0 5%;
             }
         }
+        #portugues{display: none;}
+        #english{display: none;}
     </style>
 
 </head>
@@ -55,43 +57,60 @@
         <a href="https://www.linkedin.com/in/ary-costa-a31a42234/"><img src="imgs/linkedin.png" ></a>
         <a href="https://github.com/aryPog"><img src="imgs/github.png" ></a>
         <a href="https://www.instagram.com/ary.fofo/"><img src="imgs/instagram.png"></a>
-    </div><br>
+    </div>
+    <br>
 
-        <div class="nome sobre">
-            <img src="imgs/nome.png">
-            <p>Ary G. Costa;
-Estudante de TI comprometido em ajudar o próximo com 1 ano e 7 meses de experiência na área. Já trabalhou como jovem aprendiz em uma empresa de arquitetura 
-fazendo planilhas no EXEL e Hoje em dia usa o conhecimento que adquiriu como ajuda nos estudos. Atualmente estuda no Colégio Cotemig e tem essas 
-qualificações:
-
-C# - básico;
-HTML, CSS - básico;
-javaScript - quase bom;
-inglês - "fluente"</p>
+    <div class="nome">
+        <img src="imgs/nome.png">
+        <div lang="en" class="wrapper">
+            <p>Ary G. Costa; Is an TI Student that do stuff and help others with the experience he has. Worked as a intern in a architecture companny updating their filing system, now he uses the knowloge aquaried to help his studies. For now he has this qualifications:
+            HTML,CSS,JS; python; GO; C#; english;</p>
+            <h1>Works</h1>
         </div>
-        <div class="trabalhos">
+
+        <div lang="pt" class="wrapper" style="display: none;">
+            <p>Ary G. Costa; Estudante de TI comprometido em ajudar o próximo com 1 ano e 7 meses de experiência na área. Já trabalhou como jovem aprendiz em uma empresa de arquitetura fazendo planilhas no EXEL e Hoje em dia usa o conhecimento que adquiriu como ajuda nos estudos. Atualmente estuda no Colégio Cotemig e tem essas qualificações:
+            HTML,CSS,JS; python; GO; C#; inglês;</p> 
             <h1>trabalhos</h1>
-            <div class="data"></div>
         </div>
+    </div>
+
+    <div class="trabalhos">
+        <div class="data"></div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script>
+        $(document).ready(function() {
+            var known = { en: true,pt: true};
+            var lang  = ((navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage || 'en').substr(0, 2);
+            if(!known[lang])
+                lang = 'en';
+            $('div.wrapper[lang='  + lang + ']').show();
+            $('div.wrapper[lang!=' + lang + ']').hide();
+        });
     
         fetch("work.json")
         .then(function(response){
         return response.json();
         })
-
         .then(function(works){
-        let placeholder = document.querySelector(".data");
-        let out = "";
-        for(let work of works){
-            out += `
-                <div class="bloco-trabalho" style="background-image:url(${work.image});">
-                    <a href="${work.link}"><p>${work.name}</p></a>
-                </div>
-            `;
-        }
-        placeholder.innerHTML = out;
+            let placeholder = document.querySelector(".data");
+            let out = "";
+            for(let work of works){
+                out += `
+                    <div class="bloco-trabalho" style="background-image:url(${work.image});">
+                        <a href="${work.link}"><p>${work.name}</p></a>
+                    </div>
+                `;
+            }
+            placeholder.innerHTML = out;
         });
     </script>
+    <noscript>
+        <p>It looks like you don't have JavaScript enabled.</p>
+        <p>Go to <a href="https://github.com/aryPog">mygithub</a> or enable it</p>
+    </noscript>
 </body>
 </html>

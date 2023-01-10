@@ -1,11 +1,11 @@
 [
         {
-            "name":"site do Cotemig",
+            "name":"Cotemig's website",
             "image":"imgs/cotemig-site.png",
             "link":"https://soft-gnome-955ff0.netlify.app/"
         },
         {
-            "name":"cazine website",
+            "name":"calzine's website",
             "image":"imgs/ecomerc.png",
             "link":"https://cosmic-platypus-78f7bb.netlify.app/index.html"
         }
